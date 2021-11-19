@@ -6,7 +6,7 @@ import useFetch from 'customHooks/useFetch';
 // State
 import { GlobalContext } from 'globalState/GlobalStateContext';
 // Types
-import { DisruptionIndicatorTypes } from 'sharedTypes';
+import { DepartureTypes } from 'sharedTypes';
 import { TramStopsAPI, TramRowProps } from './types';
 
 const TramRow = ({ favs }: TramRowProps): JSX.Element => {
@@ -16,12 +16,12 @@ const TramRow = ({ favs }: TramRowProps): JSX.Element => {
   useEffect(() => {
     if (response && response.metroStopsById) {
       const data = response?.metroStopsById.map(
-        ({ atcoCode: id, disruptionSeverity, name }): DisruptionIndicatorTypes => ({
+        ({ atcoCode: id, disruptionSeverity, name }): DepartureTypes => ({
           id,
           disruptionSeverity,
           disruptionUrlSearchParams: `?mode=tram&query=${name}&queryTo=${name}&selectedItem=${id}&selectedItemTo=${id}`,
           formatDisruptionIndicatorText: false,
-          indicatorText: 'MM1',
+          serviceName: 'MM1',
           optionalText: name,
           modalIcon: 'metro',
           mode: 'tram',

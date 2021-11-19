@@ -1,10 +1,10 @@
-import { DefaultModes, DisruptionIndicatorTypes } from 'sharedTypes';
+import { DefaultModes, DepartureTypes } from 'sharedTypes';
 
 type FavsStateProps = {
-  bus: DisruptionIndicatorTypes[];
-  tram: DisruptionIndicatorTypes[];
-  train: DisruptionIndicatorTypes[];
-  roads: DisruptionIndicatorTypes[];
+  bus: DepartureTypes[];
+  tram: DepartureTypes[];
+  train: DepartureTypes[];
+  roads: DepartureTypes[];
 };
 
 export type InitialStateProps = {
@@ -31,10 +31,17 @@ export type ActionType =
       payload: { mode: DefaultModes; visible: boolean };
     }
   | {
+      type: 'UPDATE_BUS_SERVICES';
+      payload: {
+        mode: DefaultModes;
+        data: DepartureTypes[];
+      };
+    }
+  | {
       type: 'UPDATE_SERVICES';
       payload: {
         mode: DefaultModes;
-        data: DisruptionIndicatorTypes[];
+        data: DepartureTypes[];
       };
     }
   | {

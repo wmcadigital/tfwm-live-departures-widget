@@ -1,5 +1,27 @@
 // Types
-import { DisruptionFavs, Favs } from './types';
+import { DisruptionFavs, StopStationFavs, FavMode, Favs } from './types';
+
+const getStopStationCookieData = (): StopStationFavs | undefined => {
+  const cookies = document.cookie;
+  const favouritesCookieName = 'favStopStation';
+  const hasCookie = cookies.indexOf(favouritesCookieName) > -1;
+  if (!hasCookie) return undefined;
+
+  const cookieSplit = cookies.split('; ').find(row => row.startsWith(`${favouritesCookieName}=`));
+  if (cookieSplit === undefined) return undefined;
+
+  const cookieData = cookieSplit.split('=')[1];
+
+  return JSON.parse(cookieData);
+};
+
+const getFavsFromCookies = (mode: 'bus' | 'train' | 'tram'): FavMode[] => {
+  const cookieData = getStopStationCookieData();
+  if (cookieData === undefined) return [];
+  const favs = cookieData[mode];
+  if (!favs) return [];
+  return favs;
+};
 
 const getDisruptionCookieData = (): DisruptionFavs | undefined => {
   const cookies = document.cookie;
@@ -36,7 +58,7 @@ const hasAnyFavourites = (): boolean => {
 };
 
 const setCookie = (cname: string, cvalue: string, exdays: number): void => {
-  const env = process.env.NODE_ENV || 'developement';
+  const env = process.env.NODE_ENV || 'development';
   const cookieDomain = 'tfwm.org.uk';
   const d = new Date();
   d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
@@ -45,4 +67,11 @@ const setCookie = (cname: string, cvalue: string, exdays: number): void => {
   document.cookie = `${cname}=${cvalue};${expires};${domain};path=/`;
 };
 
-export { getDisruptionCookieData, getFavouritesFromCookies, hasAnyFavourites, setCookie };
+export {
+  getStopStationCookieData,
+  getFavsFromCookies,
+  getDisruptionCookieData,
+  getFavouritesFromCookies,
+  hasAnyFavourites,
+  setCookie,
+};

@@ -1,4 +1,4 @@
-import { DisruptionSeverity } from 'sharedTypes/serviceDisruption';
+import { DisruptionSeverity } from 'sharedTypes/serviceDepartures';
 
 export type TramRowProps = {
   favs: string[];

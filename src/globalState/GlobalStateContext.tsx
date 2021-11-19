@@ -1,4 +1,4 @@
-import { createContext } from 'preact';
+import { createContext, JSX } from 'preact';
 import { useReducer } from 'preact/hooks';
 // Helpers
 import { getDisruptionCookieData, hasAnyFavourites, setCookie } from 'sharedHelpers';
@@ -53,6 +53,21 @@ export const GlobalContextProvider = ({ children }: ContextProviderProps): JSX.E
           isRowExpandedOnMobile: {
             ...state.isRowExpandedOnMobile,
             [mode]: visible,
+          },
+        };
+      }
+
+      case 'UPDATE_BUS_SERVICES': {
+        const { mode, data } = action.payload;
+        return {
+          ...state,
+          favs: {
+            ...state.favs,
+            [mode]: data,
+          },
+          previousFavs: {
+            ...state.previousFavs,
+            [mode]: data,
           },
         };
       }

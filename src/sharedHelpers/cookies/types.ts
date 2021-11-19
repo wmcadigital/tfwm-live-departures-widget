@@ -3,6 +3,7 @@ export interface DisruptionFavs {
   hideFavsHelpMsg: boolean | undefined;
   favs: Favs | undefined;
 }
+
 export interface Favs {
   bus?: string[] | undefined;
   train?: TrainFavEntity[] | undefined;
@@ -20,4 +21,20 @@ export interface RoadsFavEntity {
   lat: number | undefined;
   lon: number | undefined;
   radius: number | undefined;
+}
+
+export interface StopStationFavs {
+  bus?: FavMode[] | undefined;
+  train?: FavMode[] | undefined;
+  tram?: FavMode[] | undefined;
+}
+export interface FavMode {
+  stopAtcoCode: string;
+  stopName: string;
+  lines: FavLineEntity[];
+}
+export interface FavLineEntity {
+  id: string;
+  name: string;
+  routeName: string;
 }

@@ -4,7 +4,7 @@ import DisruptionRowContainer from 'components/shared/DisruptionRowContainer/Dis
 // State
 import { GlobalContext } from 'globalState/GlobalStateContext';
 // Types
-import { DisruptionIndicatorTypes } from 'sharedTypes';
+import { DepartureTypes } from 'sharedTypes';
 import { TrainRowProps } from './types';
 // Custom hooks
 import useFetchTrainStations from './useFetchTrainStations';
@@ -17,12 +17,12 @@ const TrainRow = ({ favs }: TrainRowProps): JSX.Element => {
   useEffect(() => {
     if (response && response.filteredData) {
       const data = response?.filteredData.map(
-        ({ id, lineId, disruptionSeverity, name }): DisruptionIndicatorTypes => ({
+        ({ id, lineId, disruptionSeverity, name }): DepartureTypes => ({
           id: lineId || '',
           disruptionSeverity,
           disruptionUrlSearchParams: `?mode=train&query=${name}&queryTo=${name}&selectedItem=${id}&selectedItemTo=${id}`,
           formatDisruptionIndicatorText: true,
-          indicatorText: lineId || '',
+          serviceName: lineId || '',
           modalIcon: 'rail',
           mode: 'train',
         })

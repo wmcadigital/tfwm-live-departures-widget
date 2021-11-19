@@ -3,12 +3,12 @@ import { StateUpdater } from 'preact/hooks';
 // Components
 import Icon from 'components/shared/Icon/Icon';
 // Types
-import { DisruptionIndicatorTypes, IsRowOpen, VisibleDisruptionIndicators } from 'sharedTypes';
+import { DepartureTypes, IsRowOpen, VisibleDisruptionIndicators } from 'sharedTypes';
 // Helper funcs
 import { disruptionTextElementToShow, getSeverityVars } from './helpers';
 import useDisruptionIndicator from './useDisruptionIndicator';
 
-type DisruptionIndicatorProps = DisruptionIndicatorTypes & typeof defaultProps;
+type DisruptionIndicatorProps = DepartureTypes & typeof defaultProps;
 
 type NewProps = DisruptionIndicatorProps & {
   setIndicatorsVisibility: StateUpdater<VisibleDisruptionIndicators[]>;
@@ -27,7 +27,7 @@ const DisruptionIndicator = ({
   disruptionSeverity,
   disruptionUrlSearchParams,
   formatDisruptionIndicatorText,
-  indicatorText,
+  serviceName,
   mode,
   modalIcon,
   optionalText,
@@ -63,7 +63,7 @@ const DisruptionIndicator = ({
             iconName={`modes-isolated-${modalIcon}`}
           />
 
-          <span className="wmnds-disruption-indicator-medium__service ">{indicatorText}</span>
+          <span className="wmnds-disruption-indicator-medium__service ">{serviceName}</span>
 
           <Icon
             className="wmnds-disruption-indicator-medium__icon wmnds-disruption-indicator-medium__icon--right"
@@ -82,7 +82,7 @@ const DisruptionIndicator = ({
         <button
           type="button"
           className="wmnds-travel-update__disruption-delete"
-          title={`Delete ${indicatorText}${optionalText && ` - ${optionalText}`} service`}
+          title={`Delete ${serviceName}${optionalText && ` - ${optionalText}`} service`}
           onClick={handleRemoveService}
         >
           <Icon iconName="general-trash" />

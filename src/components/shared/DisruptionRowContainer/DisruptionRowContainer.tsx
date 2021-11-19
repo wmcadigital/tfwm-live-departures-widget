@@ -1,3 +1,4 @@
+import { JSX } from 'preact/jsx-runtime';
 // Types
 import { DefaultModes } from 'sharedTypes';
 // Components
@@ -42,7 +43,7 @@ const DisruptionRowContainer = ({
               disruptionSeverity,
               disruptionUrlSearchParams,
               formatDisruptionIndicatorText,
-              indicatorText,
+              serviceName,
               optionalText,
               modalIcon,
             }) => (
@@ -51,7 +52,7 @@ const DisruptionRowContainer = ({
                 disruptionSeverity={disruptionSeverity}
                 disruptionUrlSearchParams={disruptionUrlSearchParams}
                 formatDisruptionIndicatorText={formatDisruptionIndicatorText}
-                indicatorText={indicatorText}
+                serviceName={serviceName}
                 optionalText={optionalText}
                 modalIcon={modalIcon}
                 mode={mode}
