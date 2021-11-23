@@ -1,10 +1,16 @@
 import { DefaultModes, DepartureTypes } from 'sharedTypes';
+import { FavMode } from 'sharedHelpers/cookies/types';
 
 type FavsStateProps = {
   bus: DepartureTypes[];
   tram: DepartureTypes[];
   train: DepartureTypes[];
-  roads: DepartureTypes[];
+};
+
+type FavProps = {
+  bus: FavMode[];
+  tram: FavMode[];
+  train: FavMode[];
 };
 
 export type InitialStateProps = {
@@ -13,12 +19,13 @@ export type InitialStateProps = {
     bus: boolean;
     tram: boolean;
     train: boolean;
-    roads: boolean;
   };
   hasFavs: boolean;
   favs: FavsStateProps;
   previousFavs: FavsStateProps;
   favsToRemoveOnSave: { mode: DefaultModes; id: string }[];
+  favourites: FavProps;
+  tempFavs: FavProps;
 };
 
 export type ActionType =
@@ -35,6 +42,17 @@ export type ActionType =
       payload: {
         mode: DefaultModes;
         data: DepartureTypes[];
+      };
+    }
+  | {
+      type: 'UPDATE_DATA';
+      payload: FavProps;
+    }
+  | {
+      type: 'UPDATE_TEMP_DATA';
+      payload: {
+        mode: DefaultModes;
+        data: FavMode;
       };
     }
   | {

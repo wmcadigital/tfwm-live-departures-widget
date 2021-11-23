@@ -1,5 +1,5 @@
 // Types
-import { DisruptionFavs, StopStationFavs, FavMode, Favs } from './types';
+import { DisruptionFavs, StopStationFavs, Favs } from './types';
 
 const getStopStationCookieData = (): StopStationFavs | undefined => {
   const cookies = document.cookie;
@@ -15,11 +15,11 @@ const getStopStationCookieData = (): StopStationFavs | undefined => {
   return JSON.parse(cookieData);
 };
 
-const getFavsFromCookies = (mode: 'bus' | 'train' | 'tram'): FavMode[] => {
+const getFavsFromCookies = (): StopStationFavs => {
   const cookieData = getStopStationCookieData();
-  if (cookieData === undefined) return [];
-  const favs = cookieData[mode];
-  if (!favs) return [];
+  if (cookieData === undefined) return {};
+  const favs = cookieData;
+  if (!favs) return {};
   return favs;
 };
 

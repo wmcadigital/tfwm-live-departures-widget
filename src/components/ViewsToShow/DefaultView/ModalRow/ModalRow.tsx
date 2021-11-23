@@ -8,7 +8,7 @@ import { ModalRowProps } from './types';
 
 const ModalRow = ({ isFetching, response, mode }: ModalRowProps): JSX.Element => {
   const modalIcon = correctModalIcon(mode);
-  const modalName = mode === 'roads' ? 'road' : mode;
+  const modalName = mode;
   const totalDisruptions = response?.totals[modalName];
 
   let { iconName, disruptionIndicatorClass, htmlToShow } = disruptionIconToShow(

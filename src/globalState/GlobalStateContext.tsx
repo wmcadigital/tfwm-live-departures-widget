@@ -13,20 +13,27 @@ const initialState: InitialStateProps = {
     bus: false,
     tram: false,
     train: false,
-    roads: false,
   },
   hasFavs: hasAnyFavourites(),
+  favourites: {
+    bus: [],
+    tram: [],
+    train: [],
+  },
+  tempFavs: {
+    bus: [],
+    tram: [],
+    train: [],
+  },
   favs: {
     bus: [],
     tram: [],
     train: [],
-    roads: [],
   },
   previousFavs: {
     bus: [],
     tram: [],
     train: [],
-    roads: [],
   },
   favsToRemoveOnSave: [],
 };
@@ -87,6 +94,30 @@ export const GlobalContextProvider = ({ children }: ContextProviderProps): JSX.E
         };
       }
 
+      case 'UPDATE_DATA': {
+        return {
+          ...state,
+          favourites: action.payload,
+        };
+      }
+
+      case 'UPDATE_TEMP_DATA': {
+        const { mode, data } = action.payload;
+        const favsToAdd = [
+          ...state.tempFavs[mode].filter(fav => fav.stopAtcoCode !== data.stopAtcoCode),
+        ];
+        if (data.lines.length) {
+          favsToAdd.push(data);
+        }
+        return {
+          ...state,
+          tempFavs: {
+            ...state.tempFavs,
+            [mode]: favsToAdd,
+          },
+        };
+      }
+
       case 'REMOVE_SERVICE': {
         const { mode, id } = action.payload;
         return {
@@ -126,12 +157,6 @@ export const GlobalContextProvider = ({ children }: ContextProviderProps): JSX.E
             cookieObj.favs[mode] = cookiesModeArr.filter(
               (item: TrainFavEntity) => item.line !== id
             ); // Map filtered array back to our cookieObj
-          } else if (mode === 'roads') {
-            // As we set our id to be address + radius in disruption indicator for roads, we need to check if the address + radius is the same as our id. If it is, it will return false (meaning we filter it out). Otherwise return true and keep that cookie.
-            cookieObj.favs[mode] = cookiesModeArr.filter(({ address, radius }: RoadsFavEntity) => {
-              if (address && radius) return address + radius !== id;
-              return true;
-            });
           } else {
             cookieObj.favs[mode] = cookiesModeArr.filter((item: string) => item !== id); // Map filtered array back to our cookieObj
           }

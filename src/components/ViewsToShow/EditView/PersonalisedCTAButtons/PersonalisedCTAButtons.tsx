@@ -7,7 +7,7 @@ import usePersonalisedCTAButtons from './usePersonalisedCTAButtons';
 
 const PersonalisedCTAButtons = (): JSX.Element => {
   const {
-    disruptionsLink,
+    // disruptionsLink,
     editMode,
     handleEditServicesClick,
     handleSaveChanges,
@@ -30,7 +30,7 @@ const PersonalisedCTAButtons = (): JSX.Element => {
         ) : (
           <button
             type="button"
-            className="wmnds-btn wmnds-btn--mode wmnds-col-1 wmnds-m-b-md"
+            className="wmnds-btn wmnds-btn--mode wmnds-col-1"
             onClick={handleCancelChanges}
           >
             Cancel
@@ -40,7 +40,11 @@ const PersonalisedCTAButtons = (): JSX.Element => {
       {/* View all updates button */}
       <div className="wmnds-col-1-2">
         {!editMode ? (
-          <Link className="wmnds-btn wmnds-col-1" href={disruptionsLink} isButton>
+          <Link
+            className="wmnds-btn wmnds-col-1"
+            href="https://find-stop-or-station.tfwm.org.uk"
+            isButton
+          >
             Find stop or station
             <Icon
               className="wmnds-btn__icon wmnds-btn__icon--right"

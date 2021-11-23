@@ -14,7 +14,6 @@ const DefaultView = (): JSX.Element => {
       <ModalRow isFetching={isFetching} response={response} mode="bus" />
       <ModalRow isFetching={isFetching} response={response} mode="train" />
       <ModalRow isFetching={isFetching} response={response} mode="tram" />
-      <ModalRow isFetching={isFetching} response={response} mode="roads" />
       <CTAButtons />
     </>
   );
