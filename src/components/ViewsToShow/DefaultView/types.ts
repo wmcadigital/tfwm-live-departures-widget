@@ -1,15 +1,3 @@
-interface CountApiTypes {
-  totals: Totals;
-  url: string;
-  versionNo: string;
-  staleAt: string;
-}
+import { TrainFavEntity } from 'sharedHelpers/cookies/types';
 
-interface Totals {
-  bus: number;
-  tram: number;
-  train: number;
-  road: number;
-}
-
-export default CountApiTypes;
+export type CurrentFavs = ['bus' | 'tram' | 'roads', string[]] | ['train', TrainFavEntity[]];

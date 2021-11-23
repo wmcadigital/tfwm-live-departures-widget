@@ -3,16 +3,16 @@ import Icon from 'components/shared/Icon/Icon';
 import Link from 'components/shared/Link/Link';
 import { JSX } from 'preact/jsx-runtime';
 // CustomHooks
-import usePersonalisedCTAButtons from './usePersonalisedCTAButtons';
+import useFooterCTAButtons from './useFooterCTAButtons';
 
-const PersonalisedCTAButtons = (): JSX.Element => {
+const FooterCTAButtons = (): JSX.Element => {
   const {
     // disruptionsLink,
     editMode,
     handleEditServicesClick,
     handleSaveChanges,
     handleCancelChanges,
-  } = usePersonalisedCTAButtons();
+  } = useFooterCTAButtons();
 
   return (
     <div className="wmnds-grid wmnds-grid--spacing-2-lg">
@@ -61,4 +61,4 @@ const PersonalisedCTAButtons = (): JSX.Element => {
   );
 };
 
-export default PersonalisedCTAButtons;
+export default FooterCTAButtons;

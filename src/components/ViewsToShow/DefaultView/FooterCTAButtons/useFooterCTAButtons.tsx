@@ -3,7 +3,7 @@ import { useContext } from 'preact/hooks';
 import { GlobalContext } from 'globalState/GlobalStateContext';
 import { setCookie } from 'sharedHelpers/cookies/cookies';
 
-type UsePersonalisedCTAButtonsTypes = {
+type UseFooterCTAButtonsTypes = {
   disruptionsLink: string;
   editMode: boolean;
   handleEditServicesClick: () => void;
@@ -11,7 +11,7 @@ type UsePersonalisedCTAButtonsTypes = {
   handleSaveChanges: () => void;
 };
 
-const usePersonalisedCTAButtons = (): UsePersonalisedCTAButtonsTypes => {
+const useFooterCTAButtons = (): UseFooterCTAButtonsTypes => {
   const disruptionsLink = '//disruptions.tfwm.org.uk/?when=now&amp;isMapVisible=false';
   const [{ editMode, tempFavs }, dispatch] = useContext(GlobalContext);
 
@@ -37,4 +37,4 @@ const usePersonalisedCTAButtons = (): UsePersonalisedCTAButtonsTypes => {
   };
 };
 
-export default usePersonalisedCTAButtons;
+export default useFooterCTAButtons;

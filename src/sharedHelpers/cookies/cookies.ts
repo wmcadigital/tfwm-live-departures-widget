@@ -46,7 +46,7 @@ const getFavouritesFromCookies = (): Favs => {
 };
 
 const hasAnyFavourites = (): boolean => {
-  const modesWithFavourites = Object.values(getFavouritesFromCookies()).reduce(
+  const modesWithFavourites = Object.values(getFavsFromCookies()).reduce(
     (accumulator, favouritesArray) => {
       let hasFavourites = false;
       if (favouritesArray.length) hasFavourites = true;
